@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Website</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include the particle effect CSS -->
+    <link rel="stylesheet" href="particles-dust/dust.css">
+</head>
+
+<body>
+    <div id="backgroundImage">
+        <ul id="scene" data-friction-x="0.03" data-friction-y="0.05">
+            <li class="layer" id="specks" data-depth="0.1"></li>
+            <li class="layer" id="layer-1" data-depth="0.15">
+                <div class="img" id="img-1"></div>
+            </li>
+            <li class="layer" id="layer-2" data-depth="0.25">
+                <div class="img" id="img-2"></div>
+            </li>
+            <li class="layer" id="layer-3" data-depth="0.45">
+                <div class="img" id="img-3"></div>
+            </li>
+        </ul>
+
+        <div class="overlay-div">
+            <div class="rectangle">
+                <img src="imgs/square_image.png" alt="Square Image" class="squareImage">
+                <div class="centeredDiv">
+                    <div class="carousel-container">
+                        <div class="carousel-item">
+                            <div class="cell"><p>WELCOME</p>
+                            <h1>TO THE CLAN GUILD</h1>
+                            <h2>PRESS START</h2>
+                        </div></div>
+                        <div class="carousel-item"></div>
+                        <div class="carousel-item"></div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                </div>
+                <div class="buttons-container">
+                    <button id="btn1" class="left-button"
+                        onclick="changeContent('https://shard.dog/humansofbrazil', 'imgs/btn1_under.png')"></button>
+                    <button id="btn2" class="middle-button"
+                        onclick="changeContent('URL_OF_YOUR_SECOND_PAGE', 'imgs/btn2_under.png')"></button>
+                    <button id="btn3" class="right-button"
+                        onclick="changeContent('URL_OF_YOUR_THIRD_PAGE', 'imgs/btn3_under.png')"></button>
+                </div>
+            </div>
+            <img src="imgs/shardogV3.png" alt="Half Below, Half Over" class="half-over-image" id="draggableImage">
+            <img src="imgs/svara.png" alt="Svara" class="half-over-image" id="draggableSvara">
+
+        </div>
+
+        <div class="left-div" id="leftDiv">
+            <button class="arrow-button-left" onclick="toggleSize('leftDiv', 'left')"></button>
+            
+        </div>
+        
+        <div class="right-div" id="rightDiv">
+            <button class="arrow-button-right" onclick="toggleSize('rightDiv', 'right')"></button>
+            <div class="right-content">
+           </div>
+            <div class="slider-box">
+                <input id="slider" type="range" min="1" max="199" step="1" />
+                <div id="range">AIR FLOW / 10.0s</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the particle effect JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="particles-dust/dust.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
