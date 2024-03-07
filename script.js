@@ -87,41 +87,91 @@ var draggableSvara = document.getElementById('draggableSvara');
 
 var offsetXImage, offsetXSvara, initialLeftImage, initialLeftSvara;
 
+// Add event listeners for both mouse and touch events
 draggableImage.addEventListener('mousedown', startDragImage);
 draggableSvara.addEventListener('mousedown', startDragSvara);
 
+draggableImage.addEventListener('touchstart', startDragImage);
+draggableSvara.addEventListener('touchstart', startDragSvara);
+
 function startDragImage(e) {
     e.preventDefault();
-    offsetXImage = e.clientX;
+    // Check if it's a touch event or a mouse event
+    var clientX;
+    if (e.type === 'touchstart') {
+        clientX = e.touches[0].clientX;
+    } else {
+        clientX = e.clientX;
+    }
+    offsetXImage = clientX;
     initialLeftImage = draggableImage.offsetLeft;
+
+    // Add event listeners based on the event type
     document.addEventListener('mousemove', dragImage);
+    document.addEventListener('touchmove', dragImage);
+
     document.addEventListener('mouseup', stopDragImage);
+    document.addEventListener('touchend', stopDragImage);
 }
 
 function startDragSvara(e) {
     e.preventDefault();
-    offsetXSvara = e.clientX;
+    // Check if it's a touch event or a mouse event
+    var clientX;
+    if (e.type === 'touchstart') {
+        clientX = e.touches[0].clientX;
+    } else {
+        clientX = e.clientX;
+    }
+    offsetXSvara = clientX;
     initialLeftSvara = draggableSvara.offsetLeft;
+
+    // Add event listeners based on the event type
     document.addEventListener('mousemove', dragSvara);
+    document.addEventListener('touchmove', dragSvara);
+
     document.addEventListener('mouseup', stopDragSvara);
+    document.addEventListener('touchend', stopDragSvara);
 }
 
 function dragImage(e) {
-    var newLeft = e.clientX - offsetXImage + initialLeftImage;
+    // Check if it's a touch event or a mouse event
+    var clientX;
+    if (e.type === 'touchmove') {
+        clientX = e.touches[0].clientX;
+    } else {
+        clientX = e.clientX;
+    }
+
+    var newLeft = clientX - offsetXImage + initialLeftImage;
     draggableImage.style.left = newLeft + 'px';
 }
 
 function dragSvara(e) {
-    var newLeft = e.clientX - offsetXSvara + initialLeftSvara;
+    // Check if it's a touch event or a mouse event
+    var clientX;
+    if (e.type === 'touchmove') {
+        clientX = e.touches[0].clientX;
+    } else {
+        clientX = e.clientX;
+    }
+
+    var newLeft = clientX - offsetXSvara + initialLeftSvara;
     draggableSvara.style.left = newLeft + 'px';
 }
 
 function stopDragImage() {
     document.removeEventListener('mousemove', dragImage);
+    document.removeEventListener('touchmove', dragImage);
+
     document.removeEventListener('mouseup', stopDragImage);
+    document.removeEventListener('touchend', stopDragImage);
 }
 
 function stopDragSvara() {
     document.removeEventListener('mousemove', dragSvara);
+    document.removeEventListener('touchmove', dragSvara);
+
     document.removeEventListener('mouseup', stopDragSvara);
+    document.removeEventListener('touchend', stopDragSvara);
 }
